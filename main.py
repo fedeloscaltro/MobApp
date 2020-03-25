@@ -1,24 +1,31 @@
-import kivy
-from kivy.app import App  # makes all the graphics
-
+from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.popup import Popup
 from kivy.properties import ObjectProperty
 
 
-class MyGrid(Widget):
-    name = ObjectProperty(None)
-    email = ObjectProperty(None)
+class Widgets(Widget):
 
     def btn(self):
-        print("Name: ", self.name.text, " Email: ", self.email.text)
-        self.name.text = ""
-        self.email.text = ""
+        show_popup()
 
 
-class MyApp(App):  # inheritance from App
+class P(FloatLayout):
+    pass
+
+
+class MyApp(App):
     def build(self):
-        return MyGrid()
+        return Widgets()
+
+
+def show_popup():
+    show = P()
+    popupWindow = Popup(title="Popup Window", content=show, size_hint=(None, None), size=(400, 400))
+
+    popupWindow.open()
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    MyApp.run()

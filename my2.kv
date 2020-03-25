@@ -1,16 +1,34 @@
-# every button will have these properties
-<Button>:
-    font_size: 40
-    color: 0.3, 0.6, 0.7, 1
-    size_hint: 0.3, 0.5
+#to catch the right class
+<MyGrid>
 
-<FloatLayout>:
-    Button:
-        pos_hint: {"x":0.5, "top":1}
-        text: "Hello"
+    #access the values
+    name: nameId
+    email: emailId
 
-    Button:
-        id: btn
-        pos_hint: {"y": 0.3}
-        text: "World" if btn.state == "normal" else "Down"
-        background_color: 0.3, 0.4, 0.5, 1
+    GridLayout:
+        cols:1
+        # to set the width to the whole window
+        size: root.width - 200, root.height - 200
+        pos: 100, 100
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Hello"
+
+            TextInput:
+                id: nameId
+                multiline: False
+
+            Label:
+                text: "Email: "
+
+            TextInput:
+                id: emailId
+                multiline:False
+
+        Button:
+            text: "Submit"
+            #the root is MyGrid
+            on_press: root.btn()
